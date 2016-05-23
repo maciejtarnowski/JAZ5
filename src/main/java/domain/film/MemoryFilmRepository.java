@@ -7,7 +7,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class MemoryFilmRepository implements FilmRepository {
-    private List<Film> films = new ArrayList<>();
+    private static List<Film> films = new ArrayList<>();
+    private static Integer currentId = 0;
 
     @Override
     public List<Film> getFilms() {
@@ -27,14 +28,27 @@ public class MemoryFilmRepository implements FilmRepository {
 
     @Override
     public void addFilm(Film film) {
+        film.setId(++currentId);
         films.add(film);
     }
 
     @Override
-    public void updateFilm(Integer id, String title, Integer yearOfRelease, String description) throws RepositoryException {
-        Film film = getFilmById(id);
-        if (film == null) {
+    public Film updateFilm(Film film) throws RepositoryException {
+        Film updatedFilm = getFilmById(film.getId());
+        if (updatedFilm == null) {
             throw new RepositoryException("Could not update film, film not found");
         }
+
+        if (film.getDescription() != null) {
+            updatedFilm.setDescription(film.getDescription());
+        }
+        if (film.getTitle() != null) {
+            updatedFilm.setTitle(film.getTitle());
+        }
+        if (film.getYearOfRelease() != null) {
+            updatedFilm.setYearOfRelease(film.getYearOfRelease());
+        }
+
+        return updatedFilm;
     }
 }

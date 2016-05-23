@@ -6,13 +6,6 @@ public class Film {
     private Integer yearOfRelease;
     private String description;
 
-    public Film(Integer id, String title, Integer yearOfRelease, String description) {
-        this.id = id;
-        this.title = title;
-        this.yearOfRelease = yearOfRelease;
-        this.description = description;
-    }
-
     public Integer getId() {
         return id;
     }

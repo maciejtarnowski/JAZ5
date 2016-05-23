@@ -8,10 +8,12 @@ import java.util.List;
 import java.util.Optional;
 
 public class MemoryCommentRepository implements CommentRepository {
-    private List<Comment> comments = new ArrayList<>();
+    private static List<Comment> comments = new ArrayList<>();
+    private static Integer currentId = 0;
 
     @Override
     public void addComment(Comment comment) {
+        comment.setId(++currentId);
         comments.add(comment);
     }
 

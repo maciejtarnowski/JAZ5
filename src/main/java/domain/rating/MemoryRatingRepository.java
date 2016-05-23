@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class MemoryRatingRepository implements RatingRepository {
-    private List<Rating> ratings = new ArrayList<>();
+    private static List<Rating> ratings = new ArrayList<>();
 
     @Override
     public void addRating(Rating rating) {
