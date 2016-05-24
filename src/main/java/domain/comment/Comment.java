@@ -9,14 +9,6 @@ public class Comment {
     private String content;
     private Integer filmId;
 
-    public Comment(Integer id, String author, Date createdAt, String content, Integer filmId) {
-        this.id = id;
-        this.author = author;
-        this.createdAt = createdAt;
-        this.content = content;
-        this.filmId = filmId;
-    }
-
     public Integer getId() {
         return id;
     }
