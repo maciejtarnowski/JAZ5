@@ -1,8 +1,12 @@
 package domain.comment;
 
 import domain.RepositoryException;
+import domain.film.Film;
+
+import java.util.List;
 
 public interface CommentRepository {
-    public void addComment(Comment comment);
-    public void deleteCommentById(Integer id) throws RepositoryException;
+    void addComment(Comment comment);
+    void deleteCommentById(Integer id) throws RepositoryException;
+    List<Comment> getCommentsForFilm(Integer filmId);
 }

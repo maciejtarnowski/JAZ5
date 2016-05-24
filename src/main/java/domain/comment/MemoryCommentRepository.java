@@ -1,11 +1,13 @@
 package domain.comment;
 
 import domain.RepositoryException;
+import domain.film.Film;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class MemoryCommentRepository implements CommentRepository {
     private static List<Comment> comments = new ArrayList<>();
@@ -28,6 +30,13 @@ public class MemoryCommentRepository implements CommentRepository {
                 i.remove();
             }
         }
+    }
+
+    @Override
+    public List<Comment> getCommentsForFilm(Integer filmId) {
+        return comments.stream()
+                .filter(comment -> comment.getFilmId().equals(filmId))
+                .collect(Collectors.toList());
     }
 
     private Comment getCommentById(Integer id) {

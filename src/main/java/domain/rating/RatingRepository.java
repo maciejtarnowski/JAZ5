@@ -3,6 +3,7 @@ package domain.rating;
 import java.util.List;
 
 public interface RatingRepository {
-    public void addRating(Rating rating);
-    public List<Rating> getRatingsForFilm(Integer filmId);
+    void addRating(Rating rating);
+    List<Rating> getRatingsForFilm(Integer filmId);
+    RatingSummary getSummaryForFilm(Integer filmId);
 }
