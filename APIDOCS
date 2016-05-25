@@ -1,0 +1,58 @@
+Build:
+mvn compile && maven package && asadmin deploy --force=true target/jazzad5.war
+
+API:
+
+- get films GET http://localhost:8180/jazzad5/v1/films
+
+- add film POST http://localhost:8180/jazzad5/v1/films
+{
+    "title": "Ocean's Eleven",
+    "yearOfRelease": 2001,
+    "description": "Ocean's Eleven is a 2001 American comedy heist film and a remake of the 1960 Rat Pack film of the same name."
+}
+
+- get film GET http://localhost:8180/jazzad5/v1/films/1
+
+- update film PUT http://localhost:8180/jazzad5/v1/films/1
+{
+    "title": "Ocean's 12",
+    "yearOfRelease": 2003
+}
+
+- get comments GET http://localhost:8180/jazzad5/v1/films/1/comments
+
+- add comment POST http://localhost:8180/jazzad5/v1/films/1/comments
+{
+    "author": "MaciejTdsfdsf",
+    "content": "Great fdfsdfdfilm, 5/5"
+}
+
+- delete comment DELETE http://localhost:8180/jazzad5/v1/films/1/comments/2
+
+- get ratings GET http://localhost:8180/jazzad5/v1/films/1/ratings
+
+- add rating POST http://localhost:8180/jazzad5/v1/films/1/ratings
+{
+    "value": 4
+}
+
+- add actor POST http://localhost:8180/jazzad5/v1/actors
+{
+    "name": "George Clooney",
+    "yearOfBirth": 1961
+}
+
+- assign actor to film PUT http://localhost:8180/jazzad5/v1/films/1/actors
+{
+    "actorId": 1
+}
+
+- get actors for film GET http://localhost:8180/jazzad5/v1/films/1/actors
+
+- get films for actor GET http://localhost:8180/jazzad5/v1/actors/1/films
+
+- assign film to actor PUT http://localhost:8180/jazzad5/v1/actors/1/films
+{
+    "filmId": 1
+}
