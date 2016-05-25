@@ -1,6 +1,9 @@
 package rest;
 
 import domain.RepositoryException;
+import domain.actor.ActorRepository;
+import domain.actorfilm.ActorFilm;
+import domain.actorfilm.ActorFilmRepository;
 import domain.comment.Comment;
 import domain.comment.CommentRepository;
 import domain.film.Film;
@@ -21,6 +24,8 @@ public class FilmResource {
     private FilmRepository filmRepository = RepositoryRegistry.getFilmRepository();
     private CommentRepository commentRepository = RepositoryRegistry.getCommentRepository();
     private RatingRepository ratingRepository = RepositoryRegistry.getRatingRepository();
+    private ActorFilmRepository actorFilmRepository = RepositoryRegistry.getActorFilmRepository();
+    private ActorRepository actorRepository = RepositoryRegistry.getActorRepository();
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -123,6 +128,36 @@ public class FilmResource {
 
         rating.setFilmId(id);
         ratingRepository.addRating(rating);
+
+        return Response.ok().build();
+    }
+
+    @GET
+    @Path("/{id}/actors")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getActorsByFilm(@PathParam("id") Integer id) {
+        if (filmRepository.getFilmById(id) == null) {
+            return Response.status(404).build();
+        }
+
+        return Response.ok(actorFilmRepository.getActorsByFilm(id)).build();
+    }
+
+    @PUT
+    @Path("/{id}/actors")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response assignActorToFilm(@PathParam("id") Integer id, ActorFilm actorFilm) {
+        if (actorFilm.getActorId() == null) {
+            return Response.status(400).build();
+        }
+        if (actorRepository.getActorById(actorFilm.getActorId()) == null) {
+            return Response.status(400).build();
+        }
+        if (filmRepository.getFilmById(id) == null) {
+            return Response.status(404).build();
+        }
+
+        actorFilmRepository.assignActorToFilm(actorFilm.getActorId(), id);
 
         return Response.ok().build();
     }

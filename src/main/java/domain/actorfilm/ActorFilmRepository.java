@@ -8,4 +8,5 @@ import java.util.List;
 public interface ActorFilmRepository {
     List<Film> getFilmsByActor(Integer actorId);
     List<Actor> getActorsByFilm(Integer filmId);
+    void assignActorToFilm(Integer actorId, Integer filmId);
 }
