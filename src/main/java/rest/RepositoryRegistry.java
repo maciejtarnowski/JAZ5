@@ -37,4 +37,24 @@ public class RepositoryRegistry {
     public static ActorFilmRepository getActorFilmRepository() {
         return actorFilmRepository;
     }
+
+    public static void setCommentRepository(CommentRepository commentRepository) {
+        RepositoryRegistry.commentRepository = commentRepository;
+    }
+
+    public static void setFilmRepository(FilmRepository filmRepository) {
+        RepositoryRegistry.filmRepository = filmRepository;
+    }
+
+    public static void setRatingRepository(RatingRepository ratingRepository) {
+        RepositoryRegistry.ratingRepository = ratingRepository;
+    }
+
+    public static void setActorRepository(ActorRepository actorRepository) {
+        RepositoryRegistry.actorRepository = actorRepository;
+    }
+
+    public static void setActorFilmRepository(ActorFilmRepository actorFilmRepository) {
+        RepositoryRegistry.actorFilmRepository = actorFilmRepository;
+    }
 }
